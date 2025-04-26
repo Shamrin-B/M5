@@ -1,3 +1,5 @@
+Name:SHAMRIN.B
+Reg.no:212224040306
 EX-21-POINTERS
 # AIM:
 Write a C program to convert a 23.65 into 25 using pointer
@@ -9,10 +11,25 @@ Write a C program to convert a 23.65 into 25 using pointer
 4.	Print the modified value.
 
 ## PROGRAM:
+```
+#include <stdio.h>
 
+int main() {
+    double num = 23.65;
+    double *ptr;
+
+    ptr = &num;
+    *ptr = 25.0;
+
+    printf("Modified value: %.2f\n", num);
+    return 0;
+}
+```
 ## OUTPUT:
  	
-
+```
+Modified value: 25.00
+```
 
 
 
@@ -45,8 +62,31 @@ Write a C program to calculate the Product of first 12 natural numbers using Rec
 6.	Print the result, indicating it is the product of the first 12 natural numbers.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+
+unsigned long long calculateProduct(int n) {
+    if (n == 1) {
+        return 1;
+    }
+    return n * calculateProduct(n - 1);
+}
+
+int main() {
+    int n = 12;
+    unsigned long long product;
+
+    product = calculateProduct(n);
+    printf("The product of the first 12 natural numbers is: %llu\n", product);
+
+    return 0;
+}
+```
 ## OUTPUT:
-         		
+```
+The product of the first 12 natural numbers is: 479001600
+```
+ 
 ## RESULT:
 
 Thus the program has been executed successfully.
@@ -68,17 +108,57 @@ Write C Program to find Sum of each row of a Matrix
 4.	Print the sum for each row.
 
 ## PROGRAM:
+```
+#include <stdio.h>
 
+int main() {
+    int rows, cols;
+    
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter number of columns: ");
+    scanf("%d", &cols);
+
+    int matrix[rows][cols];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    for (int i = 0; i < rows; i++) {
+        int rowSum = 0;
+        for (int j = 0; j < cols; j++) {
+            rowSum += matrix[i][j];
+        }
+        printf("Sum of row %d: %d\n", i + 1, rowSum);
+    }
+
+    return 0;
+}
+```
 
 
 ## OUTPUT
 
-
+```
+Enter number of rows: 3
+Enter number of columns: 3
+Enter the elements of the matrix:
+1 2 3
+4 5 6
+7 8 9
+Sum of row 1: 6
+Sum of row 2: 15
+Sum of row 3: 24
+```
  
  
 
  ## RESULT
- 
+ Thus the program has been executed successfully.
 
 
 # EX-24-STRINGS
@@ -96,11 +176,48 @@ Write C program for the below pyramid string pattern. Enter a string: PROGRAM En
 5.	End the program.
 
 ## PROGRAM:
+```
+#include <stdio.h>
+#include <string.h>
 
+int main() {
+    char str[100];
+    int num_rows, len, i, j, k;
 
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    printf("Enter number of rows: ");
+    scanf("%d", &num_rows);
+
+    len = strlen(str);
+
+    for (i = 1; i <= num_rows; i++) {
+        for (j = 1; j <= num_rows - i; j++) {
+            printf(" ");
+        }
+
+        for (k = 0; k < i; k++) {
+            printf("%c ", str[k % len]);
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+```
  ## OUTPUT
 
- 
+ ```
+    P 
+   P R 
+  P R O 
+ P R O G 
+P R O G R 
+```
 
 ## RESULT
 
@@ -132,10 +249,42 @@ Step 5: Loop from i = 0 to i < n:
 Step 6: End the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+
+int main() {
+    int i, n;
+    int arr[10];
+    int *parr = arr;
+
+    printf("Enter the number of elements (up to 6): ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", parr + i);
+    }
+
+    printf("Array elements are:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", *(parr + i));
+    }
+
+    printf("\n");
+
+    return 0;
+}
+```
 
 ## OUTPUT
 
- 
+ ```
+Enter the number of elements (up to 6): 6
+Enter 6 elements:
+1 2 3 4 5 6
+Array elements are:
+1 2 3 4 5 6
+```
 
 ## RESULT
 
